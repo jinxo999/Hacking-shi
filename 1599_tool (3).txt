@@ -1,0 +1,347 @@
+@echo off
+title 1599 TOOL v1.0
+color 0f
+setlocal enabledelayedexpansion
+
+:MAIN
+cls
+echo.
+echo [91m  __ _____ ___   ___  
+echo [91m /_ | ____/ _ \ / _ \ 
+echo [91m  | | |__| (_) | (_) |
+echo [91m  | |___ \\__, |\__, |
+echo [91m  | |___) | / /   / / 
+echo [91m  |_|____/ /_/   /_/  
+echo [91m                      
+echo.
+echo [91m┌────────────────────────────────────────┐
+echo │          Main Menu - 1599 TOOL         │
+echo └────────────────────────────────────────┘
+echo [1] Network Tools
+echo [2] File Tools
+echo [3] System Tools
+echo [4] Recon Tools
+echo [5] Basic Utilities
+echo [0] Exit
+echo [91m──────────────────────────────────────────[0m
+set /p choice=[91mSelect page: [94m
+if "%choice%"=="1" goto NETWORK
+if "%choice%"=="2" goto FILE
+if "%choice%"=="3" goto SYSTEM
+if "%choice%"=="4" goto RECON
+if "%choice%"=="5" goto UTILS
+if "%choice%"=="0" goto EXIT
+echo [91mInvalid choice.
+timeout /t 1 >nul
+goto MAIN
+
+:NETWORK
+cls
+echo.
+echo [91m  __ _____ ___   ___  
+echo [91m /_ | ____/ _ \ / _ \ 
+echo [91m  | | |__| (_) | (_) |
+echo [91m  | |___ \\__, |\__, |
+echo [91m  | |___) | / /   / / 
+echo [91m  |_|____/ /_/   /_/  
+echo [91m                      
+echo.
+echo [91m┌────────────────────────────────────────┐
+echo │     Network Tools (Cyber Security)     │
+echo └────────────────────────────────────────┘
+echo [1] Ping IP
+echo [2] Traceroute
+echo [3] Netstat (Connections)
+echo [4] IP Config
+echo [5] NS Lookup
+echo [6] ARP Table
+echo [7] Network Shares
+echo [8] Active Connections
+echo [9] Network Devices
+echo [10] Routing Table
+echo [0] Back
+echo [91m──────────────────────────────────────────[0m
+set /p choice=[91mSelect option: [94m
+if "%choice%"=="1" (
+    set /p ip=[91mEnter IP to ping: [94m
+    ping !ip!
+    pause
+)
+if "%choice%"=="2" (
+    set /p ip=[91mEnter IP/Domain for traceroute: [94m
+    tracert !ip!
+    pause
+)
+if "%choice%"=="3" (
+    netstat -ano
+    pause
+)
+if "%choice%"=="4" (
+    ipconfig /all
+    pause
+)
+if "%choice%"=="5" (
+    set /p domain=[91mEnter domain for NS lookup: [94m
+    nslookup !domain!
+    pause
+)
+if "%choice%"=="6" (
+    arp -a
+    pause
+)
+if "%choice%"=="7" (
+    net share
+    pause
+)
+if "%choice%"=="8" (
+    netstat -an
+    pause
+)
+if "%choice%"=="9" (
+    net view
+    pause
+)
+if "%choice%"=="10" (
+    route print
+    pause
+)
+if "%choice%"=="0" goto MAIN
+echo [91mInvalid choice.
+timeout /t 1 >nul
+goto NETWORK
+
+:FILE
+cls
+echo.
+echo [91m  __ _____ ___   ___  
+echo [91m /_ | ____/ _ \ / _ \ 
+echo [91m  | | |__| (_) | (_) |
+echo [91m  | |___ \\__, |\__, |
+echo [91m  | |___) | / /   / / 
+echo [91m  |_|____/ /_/   /_/  
+echo [91m                      
+echo.
+echo [91m┌────────────────────────────────────────┐
+echo │              File Tools                │
+echo └────────────────────────────────────────┘
+echo [1] List Files
+echo [2] Create Text File
+echo [3] Delete File
+echo [4] Copy File
+echo [5] Hash File (MD5)
+echo [6] Create Folder
+echo [7] Compare Files
+echo [0] Back
+echo [91m──────────────────────────────────────────[0m
+set /p choice=[91mSelect option: [94m
+if "%choice%"=="1" (
+    dir
+    pause
+)
+if "%choice%"=="2" (
+    set /p file=[91mEnter file name: [94m
+    set /p text=[91mEnter text: [94m
+    echo !text! > "!file!"
+    echo [94mFile created: !file!
+    pause
+)
+if "%choice%"=="3" (
+    set /p file=[91mEnter file to delete: [94m
+    del "!file!"
+    echo [94mFile deleted or not found.
+    pause
+)
+if "%choice%"=="4" (
+    set /p src=[91mEnter source file: [94m
+    set /p dest=[91mEnter destination: [94m
+    copy "!src!" "!dest!"
+    echo [94mFile copied or error occurred.
+    pause
+)
+if "%choice%"=="5" (
+    set /p file=[91mEnter file to hash: [94m
+    certutil -hashfile "!file!" MD5
+    pause
+)
+if "%choice%"=="6" (
+    set /p folder=[91mEnter folder name: [94m
+    mkdir "!folder!"
+    echo [94mFolder created: !folder!
+    pause
+)
+if "%choice%"=="7" (
+    set /p file1=[91mEnter first file: [94m
+    set /p file2=[91mEnter second file: [94m
+    fc "!file1!" "!file2!"
+    pause
+)
+if "%choice%"=="0" goto MAIN
+echo [91mInvalid choice.
+timeout /t 1 >nul
+goto FILE
+
+:SYSTEM
+cls
+echo.
+echo [91m  __ _____ ___   ___  
+echo [91m /_ | ____/ _ \ / _ \ 
+echo [91m  | | |__| (_) | (_) |
+echo [91m  | |___ \\__, |\__, |
+echo [91m  | |___) | / /   / / 
+echo [91m  |_|____/ /_/   /_/  
+echo [91m                      
+echo.
+echo [91m┌────────────────────────────────────────┐
+echo │             System Tools               │
+echo └────────────────────────────────────────┘
+echo [1] System Info
+echo [2] Running Processes
+echo [3] Disk Space
+echo [4] Environment Variables
+echo [5] Startup Programs
+echo [6] Scheduled Tasks
+echo [0] Back
+echo [91m──────────────────────────────────────────[0m
+set /p choice=[91mSelect option: [94m
+if "%choice%"=="1" (
+    systeminfo
+    pause
+)
+if "%choice%"=="2" (
+    tasklist
+    pause
+)
+if "%choice%"=="3" (
+    dir | find "bytes free"
+    pause
+)
+if "%choice%"=="4" (
+    set
+    pause
+)
+if "%choice%"=="5" (
+    wmic startup list full
+    pause
+)
+if "%choice%"=="6" (
+    schtasks /query
+    pause
+)
+if "%choice%"=="0" goto MAIN
+echo [91mInvalid choice.
+timeout /t 1 >nul
+goto SYSTEM
+
+:RECON
+cls
+echo.
+echo [91m  __ _____ ___   ___  
+echo [91m /_ | ____/ _ \ / _ \ 
+echo [91m  | | |__| (_) | (_) |
+echo [91m  | |___ \\__, |\__, |
+echo [91m  | |___) | / /   / / 
+echo [91m  |_|____/ /_/   /_/  
+echo [91m                      
+echo.
+echo [91m┌────────────────────────────────────────┐
+echo │              Recon Tools               │
+echo └────────────────────────────────────────┘
+echo [1] Check URL Status
+echo [2] View DNS Cache
+echo [0] Back
+echo [91m──────────────────────────────────────────[0m
+set /p choice=[91mSelect option: [94m
+if "%choice%"=="1" (
+    set /p url=[91mEnter URL (e.g., www.example.com): [94m
+    ping -n 1 !url! | find "TTL=" >nul
+    if !ERRORLEVEL! equ 0 (
+        echo [94m!url! is reachable.
+    ) else (
+        echo [91m!url! is not reachable.
+    )
+    pause
+)
+if "%choice%"=="2" (
+    ipconfig /displaydns
+    pause
+)
+if "%choice%"=="0" goto MAIN
+echo [91mInvalid choice.
+timeout /t 1 >nul
+goto RECON
+
+:UTILS
+cls
+echo.
+echo [91m  __ _____ ___   ___  
+echo [91m /_ | ____/ _ \ / _ \ 
+echo [91m  | | |__| (_) | (_) |
+echo [91m  | |___ \\__, |\__, |
+echo [91m  | |___) | / /   / / 
+echo [91m  |_|____/ /_/   /_/  
+echo [91m                      
+echo.
+echo [91m┌────────────────────────────────────────┐
+echo │            Basic Utilities             │
+echo └────────────────────────────────────────┘
+echo [1] Calculator
+echo [2] Timer
+echo [3] Clear Screen
+echo [4] Date/Time
+echo [5] Basic Password Generator
+echo [0] Back
+echo [91m──────────────────────────────────────────[0m
+set /p choice=[91mSelect option: [94m
+if "%choice%"=="1" (
+    set /p expr=[91mEnter expression (e.g., set /a 2+2): [94m
+    set /a result=!expr!
+    echo [94mResult: !result!
+    pause
+)
+if "%choice%"=="2" (
+    set /p secs=[91mEnter seconds for timer: [94m
+    timeout /t !secs! >nul
+    echo [94mTimer done!
+    pause
+)
+if "%choice%"=="3" (
+    cls
+    echo [94mScreen cleared.
+    pause
+)
+if "%choice%"=="4" (
+    echo [94mCurrent date/time:
+    date /t
+    time /t
+    pause
+)
+if "%choice%"=="5" (
+    set /p len=[91mEnter password length (max 20): [94m
+    set chars=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#
+    set pwd=
+    for /l %%i in (1,1,!len!) do (
+        set /a idx=!random! %% 66
+        for %%j in (!idx!) do set pwd=!pwd!!chars:~%%j,1!
+    )
+    echo [94mGenerated Password: !pwd!
+    pause
+)
+if "%choice%"=="0" goto MAIN
+echo [91mInvalid choice.
+timeout /t 1 >nul
+goto UTILS
+
+:EXIT
+cls
+echo.
+echo [91m  __ _____ ___   ___  
+echo [91m /_ | ____/ _ \ / _ \ 
+echo [91m  | | |__| (_) | (_) |
+echo [91m  | |___ \\__, |\__, |
+echo [91m  | |___) | / /   / / 
+echo [91m  |_|____/ /_/   /_/  
+echo [91m                      
+echo.
+echo [91mExiting 1599 TOOL. Stay ethical!
+timeout /t 2 >nul
+exit
